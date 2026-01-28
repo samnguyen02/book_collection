@@ -15,10 +15,15 @@ class BooksTest < ApplicationSystemTestCase
     click_on "New book"
 
     fill_in "Title", with: @book.title
+    fill_in "Author", with: @book.author
+    fill_in "Price", with: @book.price
+    select "2024", from: "book_published_date_1i"
+    select "January", from: "book_published_date_2i"
+    select "15", from: "book_published_date_3i"
     click_on "Create Book"
 
     assert_text "Book was successfully created"
-    click_on "Back"
+    click_on "Back to Home Page"
   end
 
   test "should update Book" do
@@ -26,10 +31,12 @@ class BooksTest < ApplicationSystemTestCase
     click_on "Edit this book", match: :first
 
     fill_in "Title", with: @book.title
+    fill_in "Author", with: @book.author
+    fill_in "Price", with: @book.price
     click_on "Update Book"
 
     assert_text "Book was successfully updated"
-    click_on "Back"
+    click_on "Back to Home Page"
   end
 
   test "should destroy Book" do
