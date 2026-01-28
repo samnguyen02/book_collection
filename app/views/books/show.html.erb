@@ -2,6 +2,10 @@
 
 <h1>Book Details</h1>
 
+<% if notice.present? %>
+  <p style="color: green"><%= notice %></p>
+<% end %>
+
 <div>
   <p><strong>Title:</strong> <%= @book.title %></p>
   <p><strong>Author:</strong> <%= @book.author %></p>
