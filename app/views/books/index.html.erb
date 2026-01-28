@@ -1,0 +1,38 @@
+<% content_for :title, "Books" %>
+
+<h1>Book Collection</h1>
+
+<% if notice.present? %>
+  <p style="color: green"><%= notice %></p>
+<% end %>
+
+<div id="books">
+  <% if @books.any? %>
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @books.each do |book| %>
+          <tr>
+            <td><%= book.title %></td>
+            <td>
+              <%= link_to "Show", book %> |
+              <%= link_to "Edit", edit_book_path(book) %> |
+              <%= link_to "Delete", delete_book_path(book) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>No books in the collection yet.</p>
+  <% end %>
+</div>
+
+<br>
+
+<%= link_to "Add New Book", new_book_path %>

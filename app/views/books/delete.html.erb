@@ -1,0 +1,19 @@
+<% content_for :title, "Delete Book" %>
+
+<h1>Delete Book</h1>
+
+<p>Are you sure you want to delete the following book?</p>
+
+<div>
+  <p><strong>Title:</strong> <%= @book.title %></p>
+</div>
+
+<div>
+  <%= button_to "Yes, Delete This Book", @book, method: :delete %>
+</div>
+
+<br>
+
+<div>
+  <%= link_to "No, Back to Home Page", books_path %>
+</div>

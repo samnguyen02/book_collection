@@ -1,0 +1,15 @@
+<% content_for :title, "Book Details" %>
+
+<h1>Book Details</h1>
+
+<div>
+  <p><strong>Title:</strong> <%= @book.title %></p>
+</div>
+
+<br>
+
+<div>
+  <%= link_to "Edit", edit_book_path(@book) %> |
+  <%= link_to "Delete", delete_book_path(@book) %> |
+  <%= link_to "Back to Home Page", books_path %>
+</div>
