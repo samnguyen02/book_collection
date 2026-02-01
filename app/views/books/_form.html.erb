@@ -17,8 +17,8 @@
   </div>
 
   <div>
-    <%= form.label :author, style: "display: block" %>
-    <%= form.text_field :author %>
+    <%= form.label :author_id, "Author", style: "display: block" %>
+    <%= form.collection_select :author_id, Author.all, :id, :name, { include_blank: "Select an author" } %>
   </div>
 
   <div>
