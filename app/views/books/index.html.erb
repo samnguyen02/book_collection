@@ -22,7 +22,7 @@
         <% @books.each do |book| %>
           <tr>
             <td><%= book.title %></td>
-            <td><%= book.author %></td>
+            <td><%= book.author&.name %></td>
             <td><%= number_to_currency(book.price) %></td>
             <td><%= book.published_date&.strftime("%B %d, %Y") %></td>
             <td>
@@ -41,4 +41,5 @@
 
 <br>
 
-<%= link_to "New book", new_book_path %>
+<%= link_to "New book", new_book_path %> |
+<%= link_to "Manage Authors", authors_path %>
