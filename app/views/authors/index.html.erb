@@ -1,0 +1,31 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Authors</h1>
+
+<div id="authors">
+  <% if @authors.any? %>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Books Count</th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @authors.each do |author| %>
+          <tr>
+            <td><%= author.name %></td>
+            <td><%= author.books.count %></td>
+            <td><%= link_to "Show", author %></td>
+            <td><%= link_to "Edit", edit_author_path(author) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>No authors yet.</p>
+  <% end %>
+</div>
+
+<%= link_to "New author", new_author_path %>

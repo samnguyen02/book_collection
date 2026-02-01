@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<h1><%= @author.name %></h1>
+
+<h2>Books by this author</h2>
+<ul>
+  <% @author.books.each do |book| %>
+    <li><%= link_to book.title, book %></li>
+  <% end %>
+</ul>
+
+<div>
+  <%= link_to "Edit", edit_author_path(@author) %> |
+  <%= link_to "Back to authors", authors_path %> |
+  <%= button_to "Delete", @author, method: :delete, data: { confirm: "Are you sure?" } %>
+</div>
