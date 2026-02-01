@@ -1,0 +1,40 @@
+{
+  "name": "book-collection",
+  "description": "Rails application for CSCE431",
+  "scripts": {
+    "postdeploy": "bundle exec rake db:migrate db:seed"
+  },
+  "env": {
+    "RAILS_ENV": {
+      "value": "production"
+    },
+    "RACK_ENV": {
+      "value": "production"
+    },
+    "SECRET_KEY_BASE": {
+      "generator": "secret"
+    },
+    "RAILS_SERVE_STATIC_FILES": {
+      "value": "true"
+    },
+    "RAILS_LOG_TO_STDOUT": {
+      "value": "true"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+    "heroku-postgresql:essential-0"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/ruby"
+    },
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
