@@ -72,6 +72,6 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "shoulda-matchers"
-  gem "webdrivers"
+  # Note: webdrivers gem removed - selenium-webdriver 4.6+ includes Selenium Manager
   gem "simplecov", require: false
 end

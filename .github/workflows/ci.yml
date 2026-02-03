@@ -16,7 +16,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: .ruby-version
+          ruby-version: '3.2'
           bundler-cache: true
 
       - name: Scan for common Rails security vulnerabilities using static analysis
@@ -32,7 +32,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: .ruby-version
+          ruby-version: '3.2'
           bundler-cache: true
 
       - name: Scan for security vulnerabilities in JavaScript dependencies
@@ -47,7 +47,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: .ruby-version
+          ruby-version: '3.2'
           bundler-cache: true
 
       - name: Lint code for consistent style
@@ -82,8 +82,27 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: .ruby-version
+          ruby-version: '3.2'
           bundler-cache: true
+
+      - name: Install ChromeDriver matching Chrome
+        run: |
+          CHROME_VERSION=$(google-chrome --version | grep -oE '[0-9]+' | head -1)
+          echo "Chrome major version: $CHROME_VERSION"
+          CHROMEDRIVER_URL="https://storage.googleapis.com/chrome-for-testing-public/${CHROME_VERSION}.0.7559.0/linux64/chromedriver-linux64.zip"
+          # Try the Chrome for Testing endpoint
+          LATEST=$(curl -sS "https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_${CHROME_VERSION}" 2>/dev/null || echo "")
+          if [ -n "$LATEST" ]; then
+            CHROMEDRIVER_URL="https://storage.googleapis.com/chrome-for-testing-public/${LATEST}/linux64/chromedriver-linux64.zip"
+          fi
+          echo "Downloading chromedriver from: $CHROMEDRIVER_URL"
+          wget -q -O /tmp/chromedriver.zip "$CHROMEDRIVER_URL" || true
+          if [ -f /tmp/chromedriver.zip ]; then
+            unzip -o /tmp/chromedriver.zip -d /tmp/
+            sudo mv /tmp/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver
+            sudo chmod +x /usr/local/bin/chromedriver
+          fi
+          chromedriver --version || echo "ChromeDriver not installed, will use selenium-manager"
 
       - name: Run Rails tests
         env:
