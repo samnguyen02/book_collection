@@ -1,5 +1,8 @@
 source "https://rubygems.org"
 
+# Pin minitest to avoid compatibility issues with Rails 8
+gem "minitest", "~> 5.25"
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.0.3"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
