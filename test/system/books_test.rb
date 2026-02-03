@@ -17,7 +17,7 @@ class BooksTest < ApplicationSystemTestCase
     click_on 'New book'
 
     fill_in 'Title', with: @book.title
-    fill_in 'Author', with: @book.author
+    select @book.author.name, from: 'book_author_id'
     fill_in 'Price', with: @book.price
     select '2024', from: 'book_published_date_1i'
     select 'January', from: 'book_published_date_2i'
@@ -33,7 +33,7 @@ class BooksTest < ApplicationSystemTestCase
     click_on 'Edit this book', match: :first
 
     fill_in 'Title', with: @book.title
-    fill_in 'Author', with: @book.author
+    select @book.author.name, from: 'book_author_id'
     fill_in 'Price', with: @book.price
     click_on 'Update Book'
 
@@ -44,6 +44,9 @@ class BooksTest < ApplicationSystemTestCase
   test 'should destroy Book' do
     visit book_url(@book)
     click_on 'Destroy this book', match: :first
+
+    # Confirmation page
+    click_on 'Yes, Delete This Book'
 
     assert_text 'Book was successfully destroyed'
   end
